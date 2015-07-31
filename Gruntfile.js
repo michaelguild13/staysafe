@@ -22,20 +22,23 @@ module.exports = function(grunt) {
       },
     },
 
+
     // babel: {
     //     options: {
     //         sourceMap: true
     //     },
-    //     dist: {
-    //         files: {
-    //             'dist/app.js': 'src/app.js'
-    //         }
+    //       app: {
+    //         src: [
+    //           'js/**/*.jsx'
+    //         ],
+    //         dest: 'dist/app.js'
+    //       }
     //     }
     // }
-    
+
     jshint: {
       options: {
-          ignores: ['js/ignore/**/*.js'],
+          ignores: ['js/**/*.jsx'],
           // reporter: require('jshint-stylish')
           // browser: true,
           // camelcase: true,
@@ -52,9 +55,9 @@ module.exports = function(grunt) {
           // sub: true,
           // undef: true,
           // white: true,
-          globals: {
-              jQuery: false,
-          }
+          // globals: {
+          //     jQuery: false,
+          // }
       },
       all: ['Gruntfile.js', 'js/**/*.js'],
       // beforeconcat: ['lib/**/*.js', 'js/**/*.js'],
@@ -70,6 +73,9 @@ module.exports = function(grunt) {
         dest: 'dist/libs.js'
       },
       app: {
+        options: {
+          ignores: ['js/**/*.jsx'],
+        },
         src: [
           'js/**/*.js'
         ],
@@ -99,5 +105,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['babel', 'concat', 'uglify']);
+  grunt.registerTask('default', ['babel', 'jshint', 'concat', 'uglify']);
 };
