@@ -1,3 +1,6 @@
+// Bootstrap
+$('.dropdown-toggle').dropdown();
+
 // #TODO: Break in to seperate files and get jsx (babel) working with grunt
 
 /** @jsx React.DOM */
