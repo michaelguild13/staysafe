@@ -1,0 +1,30 @@
+{
+  "name": "Trusted",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Guild",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "~1.3.12",
+    "compass": "~0.1.0",
+    "grunt": "~0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-bower-concat": "^0.3.0",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-compass": "~1.0.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "jshint-stylish": "~1.0.0"
+  },
+  "dependencies": {
+    "grunt-contrib-compass": "^1.0.3"
+  }
+}

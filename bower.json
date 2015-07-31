@@ -1,0 +1,14 @@
+{
+  "name": "StaySafe",
+  "version": "0.0.1",
+  "authors": [
+    "Michael Guild <michaelguild13@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+}
