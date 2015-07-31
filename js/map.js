@@ -81,7 +81,7 @@ function makeMarker (context) {
 }
 
 function showMap(err, data) {
-    if (data.lbounds) {
+    if (typeof data.lbounds !== 'undefined' && data.lbounds) {
         map.fitBounds(data.lbounds);
     } else if (data.latlng) {
         map.setView([data.latlng[0], data.latlng[1]], 13);
