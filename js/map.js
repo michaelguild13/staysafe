@@ -9,7 +9,7 @@ var layer = L.mapbox.tileLayer('mapbox.streets'),
     geocoder = L.mapbox.geocoder('mapbox.places'),
     map;
             
-function makeMarker(context) {
+function makeMarker (context) {
     var group = context.event_clearance_group.replace(/\s/g, "").toLowerCase().substring(0, 4),
         iconColor,
         iconSymbol;
@@ -35,10 +35,10 @@ function makeMarker(context) {
     } else if ( group == 'traf') {
         iconColor = '#fbcab3';
         iconSymbol = 'rail';
-    } else if ( group == 'dis') {
-        iconColor = '#dd0000';
-        iconSymbol = 'marker';
-    } else if ( group == 'prow') {
+    } else if ( group == 'dist') {
+        iconColor = '#edcdc3';
+        iconSymbol = 'telephone';
+    } else if ( group == 'prop') {
         iconColor = '#ddd000';
         iconSymbol = 'toilets';
     } else if ( group == 'liq') {
@@ -123,19 +123,23 @@ var MarkerCollection = React.createClass({
     handleClick: function(evt) {
         var lat = evt.target.dataset.lat,
             lng = evt.target.dataset.lng;
+
         map.setView([lat,lng], 18);
-        locale.openPopup();
+        // #TODO: get location to open the pop up 
+        //locations.eachLayer(function(locale) {
+        //var prop = locale.feature.properties;
     },
 
     render: function () {
         var self = this,
             markers = this.state.crimes || [];
+
         return (
             <ul className="list-group">
                 {markers.map(function(markers){
                     makeMarker(markers);
                     return  <li className="list-group-item" key={markers.cad_event_number}>
-                                <a onClick={self.handleClick} data-lng={markers.longitude} data-lat={markers.latitude}>
+                                <a className="small" onClick={self.handleClick} data-lng={markers.longitude} data-lat={markers.latitude}>
                                     {markers.event_clearance_group} 
                                 </a>
                                 <span className="badge">{markers.event_clearance_code}</span>
@@ -161,7 +165,7 @@ var SearchInput = React.createClass({
     },
 
     render: function() {
-        return <input value={this.state.value} onChange={this.handleChange} />;
+        return <input className="form-control" value={this.state.value} onChange={this.handleChange} />;
     }
 });
 

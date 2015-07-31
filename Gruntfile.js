@@ -22,47 +22,44 @@ module.exports = function(grunt) {
       },
     },
 
+    babel: {
+        options: {
+            sourceMap: true
+        },
+          app: {
+            src: ['js/**/*.jsx'],
+            dest: 'dist/app.js'
+          }
+        }
+    }
 
-    // babel: {
-    //     options: {
-    //         sourceMap: true
-    //     },
-    //       app: {
-    //         src: [
-    //           'js/**/*.jsx'
-    //         ],
-    //         dest: 'dist/app.js'
-    //       }
-    //     }
-    // }
-
-    jshint: {
-      options: {
-          ignores: ['js/**/*.jsx'],
-          // reporter: require('jshint-stylish')
-          // browser: true,
-          // camelcase: true,
-          // curly: true,
-          // eqeqeq: true,
-          // eqnull: true,
-          // es3: true,
-          // expr: true,
-          // laxbreak: true,   // Allow line breaking before && or ||
-          // loopfunc: true,
-          // newcap: true,
-          // noarg: true,
-          // onevar: true,
-          // sub: true,
-          // undef: true,
-          // white: true,
-          // globals: {
-          //     jQuery: false,
-          // }
-      },
-      all: ['Gruntfile.js', 'js/**/*.js'],
-      // beforeconcat: ['lib/**/*.js', 'js/**/*.js'],
-      // afterconcat: ['dist/**/*.js']
-    },
+    // jshint: {
+    //   options: {
+    //       ignores: ['js/**/*.jsx'],
+    //       // reporter: require('jshint-stylish')
+    //       // browser: true,
+    //       // camelcase: true,
+    //       // curly: true,
+    //       // eqeqeq: true,
+    //       // eqnull: true,
+    //       // es3: true,
+    //       // expr: true,
+    //       // laxbreak: true,   // Allow line breaking before && or ||
+    //       // loopfunc: true,
+    //       // newcap: true,
+    //       // noarg: true,
+    //       // onevar: true,
+    //       // sub: true,
+    //       // undef: true,
+    //       // white: true,
+    //       // globals: {
+    //       //     jQuery: false,
+    //       // }
+    //   },
+    //   all: ['Gruntfile.js', 'js/**/*.js'],
+    //   // beforeconcat: ['lib/**/*.js', 'js/**/*.js'],
+    //   // afterconcat: ['dist/**/*.js']
+    // },
 
     concat: {
       options: {
@@ -105,5 +102,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['babel', 'jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['babel', 'concat', 'uglify']);
 };
