@@ -11,58 +11,75 @@ $('.dropdown-toggle').dropdown();
 var layer = L.mapbox.tileLayer('mapbox.streets'),
     geocoder = L.mapbox.geocoder('mapbox.places'),
     map;
-            
+         
+function getIconType (context) {
+    var icons = {
+        'tres' : {
+            iconColor: '#f00000',
+            iconSymbol: 'swimming'
+        },
+        'carp' : {
+            iconColor: '#edcdc3',
+            iconSymbol: 'car'
+        },
+        'susp' : {
+            iconColor: '#d3dfe1',
+            iconSymbol: 'school'
+        },
+        'par': {
+            iconColor: '#ffff00',
+            iconSymbol: 'marker'
+        },
+        'the': {
+            iconColor : '#fffff0',
+            iconSymbol : 'logging'
+        },
+        'per': {
+            iconColor : '#ffffff',
+            iconSymbol : 'marker'
+        },
+        'traf': {
+            iconColor : '#fbcab3',
+            iconSymbol : 'rail'
+        },
+        'dist': {
+            iconColor : '#edcdc3',
+            iconSymbol : 'telephone'
+        },
+        'prop': {
+            iconColor : '#ddd000',
+            iconSymbol : 'toilets'
+        },
+        'liq': {
+            iconColor : '#dddd00',
+            iconSymbol : 'bar'
+        },
+        'thr': {
+            iconColor : '#ddddd0',
+            iconSymbol : 'marker'
+        },
+        'auto': {
+            iconColor : '#f8e7f4',
+            iconSymbol : 'bicycle'
+        },
+        'shop': {
+            iconColor : '#bce7f4',
+            iconSymbol : 'shop'
+        },
+        'pers': {
+            iconColor : '#bcdbbe',
+            iconSymbol : 'theatre'
+        },
+        'default': {
+            iconColor : '#000000',
+            iconSymbol : 'marker',
+        }
+    };
+    return icons[context] || icons['default'];
+}
 function makeMarker (context) {
-    var group = context.event_clearance_group.replace(/\s/g, "").toLowerCase().substring(0, 4),
-        iconColor,
-        iconSymbol;
-    // #TODO: Move filtering
-    if (group == 'tres') {
-        iconColor = '#f00000';
-        iconSymbol = 'swimming';
-    } else if ( group == 'carp') {
-        iconColor = '#edcdc3';
-        iconSymbol = 'car';
-    } else if ( group == 'susp') {
-        iconColor = '#d3dfe1';
-        iconSymbol = 'school';
-    } else if ( group == 'par') {
-        iconColor = '#ffff00';
-        iconSymbol = 'marker';
-    } else if ( group == 'the') {
-        iconColor = '#fffff0';
-        iconSymbol = 'logging';
-    } else if ( group == 'per') {
-        iconColor = '#ffffff';
-        iconSymbol = 'marker';
-    } else if ( group == 'traf') {
-        iconColor = '#fbcab3';
-        iconSymbol = 'rail';
-    } else if ( group == 'dist') {
-        iconColor = '#edcdc3';
-        iconSymbol = 'telephone';
-    } else if ( group == 'prop') {
-        iconColor = '#ddd000';
-        iconSymbol = 'toilets';
-    } else if ( group == 'liq') {
-        iconColor = '#dddd00';
-        iconSymbol = 'bar';
-    } else if ( group == 'thr') {
-        iconColor = '#ddddd0';
-        iconSymbol = 'marker';
-    } else if ( group == 'auto') {
-        iconColor = '#f8e7f4';
-        iconSymbol = 'bicycle';
-    } else if ( group == 'shop') {
-        iconColor = '#bce7f4';
-        iconSymbol = 'shop';
-    } else if ( group == 'pers') {
-        iconColor = '#bcdbbe';
-        iconSymbol = 'theatre';
-    } else {
-        iconColor = '#000000';
-        iconSymbol = 'marker';
-    }
+    var group = context.event_clearance_group.replace(/\s/g, "").toLowerCase().substring(0, 4)
+        icon = getIconType(group),
 
     L.mapbox.featureLayer({
         type: 'Feature',
@@ -77,8 +94,8 @@ function makeMarker (context) {
             title: context.event_clearance_group + ' at ' +context.hundred_block_location + ' (' + context.cad_event_number +')',
             description: context.initial_type_description ,
             'marker-size': 'large',
-            'marker-color': iconColor,
-            'marker-symbol': iconSymbol
+            'marker-color': icon.iconColor,
+            'marker-symbol': icon.iconSymbol
         }
     }).addTo(map);
 }
