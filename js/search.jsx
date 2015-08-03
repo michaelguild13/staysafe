@@ -13,7 +13,9 @@ var SearchInput = React.createClass({
     },
 
     render: function() {
-        return <input className="form-control" value={this.state.value} onChange={this.handleChange} />;
+        return (
+            <input className="form-control" value={this.state.value} onChange={this.handleChange} />
+        );
     }
 });
 

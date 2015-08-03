@@ -10,7 +10,9 @@ var MapBox = React.createClass({
     },
 
     render: function () {
-        return (<div id="map"></div>);
+        return (
+            <div id="map"></div>
+        );
     }
 });
 
