@@ -43,10 +43,3 @@ var MarkerCollection = React.createClass({
           );
     }
 });
-
-React.render(
-    // #TODO: Move ajax into a promise that will fill collection to alow custom filtering with $q
-    // http://dev.socrata.com/docs/queries.html
-    <MarkerCollection source="https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.594972, -122.331518, 1609.34)" />, 
-    document.getElementById('crimes-listings')
-);

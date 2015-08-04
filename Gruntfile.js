@@ -22,7 +22,8 @@ module.exports = function(grunt) {
       },
       app: {
         src: [
-          'js/**/*.jsx'
+          'js/components/*.jsx',
+          'js/*.jsx'
         ],
         dest: 'dist/app.js'
       }

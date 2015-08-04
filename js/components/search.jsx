@@ -26,8 +26,3 @@ var SearchInput = React.createClass({
         );
     }
 });
-
-React.render(
-    <SearchInput />,
-    document.getElementById('search')
-);
