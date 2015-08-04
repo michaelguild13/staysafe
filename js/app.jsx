@@ -8,67 +8,117 @@ var layer = L.mapbox.tileLayer('mapbox.streets'),
     map;
          
 function getIconType (context) {
+    var context = context.replace(/\W/g, "").toLowerCase();
     // #TODO: filter on full context vs first 4 char
     var icons = {
-        'tres' : {
-            iconColor: '#f00000',
-            iconSymbol: 'swimming'
+        'default' : {
+            color: '#dfdfde',
+            symbol: 'circle'
         },
-        'carp' : {
-            iconColor: '#edcdc3',
-            iconSymbol: 'car'
+        'accidentinvestigation' : {
+            color: '#ff6501',
+            symbol: 'heliport'
         },
-        'susp' : {
-            iconColor: '#d3dfe1',
-            iconSymbol: 'school'
+        'assault' : {
+            color: '#ba98cd',
+            symbol: 'logging'
         },
-        'par': {
-            iconColor: '#ffff00',
-            iconSymbol: 'marker'
+        'arrest' : {
+            color: '#a7bd2f',
+            symbol: 'police'
         },
-        'the': {
-            iconColor : '#fffff0',
-            iconSymbol : 'logging'
+        'animalcomplaints' : {
+            color: '#bd8c2f',
+            symbol: 'dog-park'
         },
-        'per': {
-            iconColor : '#ffffff',
-            iconSymbol : 'marker'
+        'burglary' : {
+            color: '#c60000',
+            symbol: 'village'
         },
-        'traf': {
-            iconColor : '#fbcab3',
-            iconSymbol : 'rail'
+        'robbery' : {
+            color: '#fffdd6',
+            symbol: 'pitch'
         },
-        'dist': {
-            iconColor : '#edcdc3',
-            iconSymbol : 'telephone'
+        'carprowl' : {
+            color: '#a0b7da',
+            symbol: 'car'
         },
-        'prop': {
-            iconColor : '#ddd000',
-            iconSymbol : 'toilets'
+        'disturbances' : {
+            color: '#014783',
+            symbol: 'oil-well'
         },
-        'liq': {
-            iconColor : '#dddd00',
-            iconSymbol : 'bar'
+        'falsealarms' : {
+            color: '#8caba8',
+            symbol: 'roadblock'
         },
-        'thr': {
-            iconColor : '#ddddd0',
-            iconSymbol : 'marker'
+        'fraudcalls' : {
+            color: '#ebdada',
+            symbol: 'emergency-telephone'
         },
-        'auto': {
-            iconColor : '#f8e7f4',
-            iconSymbol : 'bicycle'
+        'liquorviolations' : {
+            color: '#d7c6cf',
+            symbol: 'alcohol-shop'
         },
-        'shop': {
-            iconColor : '#bce7f4',
-            iconSymbol : 'shop'
+        'mentalhealth' : {
+            color: '#a2798f',
+            symbol: 'disability'
         },
-        'pers': {
-            iconColor : '#bcdbbe',
-            iconSymbol : 'theatre'
+        'narcoticscomplaints' : {
+            color: '#c39797',
+            symbol: 'pharmacy'
         },
-        'default': {
-            iconColor : '#000000',
-            iconSymbol : 'marker',
+        'nuisancemischief' : {
+            color: '#d3ffce',
+            symbol: 'skiing'
+        },
+        'otherproperty' : {
+            color: '#e6ac39',
+            symbol: 'building'
+        },
+        'prostitution'
+         : {
+            color: '#89a647',
+            symbol: 'heart'
+        },
+        'propertydamage' : {
+            color: '#855549',
+            symbol: 'baseball'
+        },
+        'prowler' : {
+            color: '#6b64a8',
+            symbol: 'school'
+        },
+        'propertymissingfound' : {
+            color: '#d77b37',
+            symbol: 'bicycle'
+        },
+        'persondowninjury' : {
+            color: '#57aea0',
+            symbol: 'hospital'
+        },
+        'personslostfoundmissing' : {
+            color: '#00e6e6',
+            symbol: 'playground'
+        },
+        'shoplifting' : {
+            color: '#009999',
+            symbol: 'grocery'
+        },
+        'suspiciouscircumstances' : {
+            color: '#11b2b2',
+            symbol: 'theatre'
+        },
+        'trafficrelatedcalls' : {
+            color: '#11b7b7',
+            symbol: 'bus'
+        },
+        'threatsharassment' : {
+            color: '#afb4bb',
+            symbol: 'danger'
+        },
+        'trespass' : {
+            color: '#e93b46',
+            symbol: 'prison'
         }
     };
 
@@ -76,8 +126,7 @@ function getIconType (context) {
 }
 
 function makeMarker (context) {
-    var group = context.event_clearance_group.replace(/\s/g, "").toLowerCase().substring(0, 4),
-        icon = getIconType(group);
+    var icon = getIconType(context.event_clearance_group);
 
     L.mapbox.featureLayer({
         type: 'Feature',
@@ -92,16 +141,8 @@ function makeMarker (context) {
             title: context.event_clearance_group + ' at ' +context.hundred_block_location + ' (' + context.cad_event_number +')',
             description: context.initial_type_description ,
             'marker-size': 'large',
-            'marker-color': icon.iconColor,
-            'marker-symbol': icon.iconSymbol
+            'marker-color': icon.color,
+            'marker-symbol': icon.symbol
         }
     }).addTo(map);
-}
-
-function showMap(err, data) {
-    if (typeof data.lbounds !== 'undefined' && data.lbounds) {
-        map.fitBounds(data.lbounds);
-    } else if (data.latlng) {
-        map.setView([data.latlng[0], data.latlng[1]], 13);
-    }
 }

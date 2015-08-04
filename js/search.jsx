@@ -5,8 +5,16 @@ var SearchInput = React.createClass({
         };
     },
 
+    showMap: function (err, data) {
+        if (typeof data.lbounds !== 'undefined' && data.lbounds) {
+            map.fitBounds(data.lbounds);
+        } else if (data.latlng) {
+            map.setView([data.latlng[0], data.latlng[1]], 13);
+        }
+    },
+
     handleChange: function(evt) {
-        geocoder.query(evt.target.value, showMap);
+        geocoder.query(evt.target.value, this.showMap);
         this.setState({
             value: evt.target.value
         });

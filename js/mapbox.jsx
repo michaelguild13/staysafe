@@ -1,7 +1,6 @@
 var MapBox = React.createClass({
     componentDidMount: function () {
         map = L.mapbox.map('map', 'mapbox.streets');
-        //geocoder.query('Chester, NJ', showMap);
         map.setView([47.594972, -122.331518], 15);
         layer.on('ready', function() {
           // the layer has been fully loaded now, and you can
