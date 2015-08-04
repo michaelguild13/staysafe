@@ -29,17 +29,19 @@ var MarkerCollection = React.createClass({
             markers = this.state.crimes || [];
 
         return (
-            <ul className="list-group">
-                {markers.map(function(markers){
-                    makeMarker(markers);
-                    return  <li className="list-group-item" key={markers.cad_event_number}>
-                                <a className="small" onClick={self.handleClick} data-lng={markers.longitude} data-lat={markers.latitude}>
-                                    {markers.event_clearance_group} 
-                                </a>
-                                <span className="badge">{markers.event_clearance_code}</span>
-                            </li>
-                })}
-            </ul>
+            <section id="crimes-listings" className="col-sm-4 col-sm-pull-8 panel panel-default">
+                <ul className="list-group">
+                    {markers.map(function(markers){
+                        makeMarker(markers);
+                        return  <li className="list-group-item" key={markers.cad_event_number}>
+                                    <a className="small" onClick={self.handleClick} data-lng={markers.longitude} data-lat={markers.latitude}>
+                                        {markers.event_clearance_group} 
+                                    </a>
+                                    <span className="badge">{markers.event_clearance_code}</span>
+                                </li>
+                    })}
+                </ul>
+            </section>
           );
     }
 });
