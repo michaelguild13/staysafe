@@ -5,7 +5,7 @@ var SearchInput = React.createClass({
         };
     },
 
-    showMap: function (err, data) {
+    setMapView: function (err, data) {
         if (typeof data.lbounds !== 'undefined' && data.lbounds) {
             map.fitBounds(data.lbounds);
         } else if (data.latlng) {
@@ -14,7 +14,7 @@ var SearchInput = React.createClass({
     },
 
     handleChange: function(evt) {
-        geocoder.query(evt.target.value, this.showMap);
+        geocoder.query(evt.target.value, this.setMapView);
         this.setState({
             value: evt.target.value
         });

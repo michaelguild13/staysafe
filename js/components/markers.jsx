@@ -17,7 +17,7 @@ var MarkerCollection = React.createClass({
     handleClick: function(evt) {
         var lat = evt.target.dataset.lat,
             lng = evt.target.dataset.lng;
-
+debugger;
         map.setView([lat,lng], 18);
         // #TODO: get location to open the pop up 
         //locations.eachLayer(function(locale) {

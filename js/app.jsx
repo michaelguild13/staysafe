@@ -1,11 +1,5 @@
 // Bootstrap
 $('.dropdown-toggle').dropdown();
-
-// Global Scopes
-// #TODO: remove Global Vars and switch to a parent container for map & other compoments
-var layer = L.mapbox.tileLayer('mapbox.streets'),
-    geocoder = L.mapbox.geocoder('mapbox.places'),
-    map;
          
 function getIconType (context) {
     var context = context.replace(/\W/g, "").toLowerCase();
@@ -127,7 +121,6 @@ function getIconType (context) {
 
 function makeMarker (context) {
     var icon = getIconType(context.event_clearance_group);
-
     L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {
@@ -147,10 +140,22 @@ function makeMarker (context) {
     }).addTo(map);
 }
 
+// Global Scopes
+// #TODO: remove Global Vars and switch to a parent container for map & other compoments
+var layer = L.mapbox.tileLayer('mapbox.streets'),
+    geocoder = L.mapbox.geocoder('mapbox.places'),
+    map;
 
 // #TODO: Move ajax into a promise that will fill collection to alow custom filtering with $q
 // http://dev.socrata.com/docs/queries.html
 var App = React.createClass({
+    getInitialState: function () {
+        return {
+            layer: L.mapbox.tileLayer('mapbox.streets'),
+            geocoder: L.mapbox.geocoder('mapbox.places'),
+            map: null
+        }
+    },
     render: function () {
         return (
             <div>
@@ -159,8 +164,7 @@ var App = React.createClass({
                     <SearchInput />
                     <div className="row">
                         <MapBox />
-                        <MarkerCollection source="https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.594972, -122.331518, 1609.34)" />, 
-                        document.getElementById('crimes-listings')
+                        <MarkerCollection source="https://data.seattle.gov/resource/3k2p-39jp.json?$limit=50&$where=within_circle(incident_location, 47.594972, -122.331518, 1609.34)" />
                     </div>
                 </article>
             </div>
