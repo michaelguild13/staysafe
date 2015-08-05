@@ -1,6 +1,6 @@
 // Bootstrap
 $('.dropdown-toggle').dropdown();
-         
+"use strict";
 function getIconType (context) {
     var context = context.replace(/\W/g, "").toLowerCase();
     // #TODO: filter on full context vs first 4 char
@@ -127,7 +127,7 @@ function makeMarker (context) {
             type: 'Point',
             coordinates: [
               context.longitude,
-              context.latitude 
+              context.latitude
             ]
         },
         properties: {
@@ -173,6 +173,6 @@ var App = React.createClass({
 });
 
 React.render(
-    <App />, 
+    <App />,
     document.body
 );
