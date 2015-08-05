@@ -2,9 +2,8 @@
 $('.dropdown-toggle').dropdown();
 "use strict";
 function getIconType (context) {
-    var context = context.replace(/\W/g, "").toLowerCase();
-    // #TODO: filter on full context vs first 4 char
-    var icons = {
+    var context = context.replace(/\W/g, "").toLowerCase(),
+        icons = {
         'default' : {
             color: '#dfdfde',
             symbol: 'circle'
