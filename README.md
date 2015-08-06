@@ -1,16 +1,9 @@
-***IMPORTANT***
+React.js, MapBox, & D3 experiment with data from https://data.seattle.gov
 
-You will need to install
-  grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-babel');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+1) install node.js
+2) sudo npm install
+3) grunt
+4) python -m SimpleHTTPServer (in root dir)
 
-prior to build
+View on localhost:8000
 
-This must be ran on a local server in order to work cross browser.
-Running file:// won't work
-
-run python -m SimpleHTTPServer
