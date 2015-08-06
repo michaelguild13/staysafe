@@ -4,26 +4,28 @@ var Navigation = React.createClass({
 
     render: function () {
         return (
-            <header className="navbar" id="top" role="banner">
-                <div className="container">
+            <nav className="navbar navbar-default" id="top" role="banner">
+                <div className="container-fluid">
                     <div className="navbar-header">
-                        <button className="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span className="sr-only">Toggle navigation</span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
+                        <a className="navbar-brand" href="#">StaySafe</a>
                     </div>
-                    <nav id="bs-navbar" className="collapse navbar-collapse">
+                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                             <li><a>Don't Park Here</a></li>
                             <li><a>Don't Walk Here</a></li>
                             <li><a>Don't Shop Here</a></li>
                             <li><a>Don't Buy a Home Here</a></li>
                         </ul>
-                    </nav>
+                        <SearchInput />
+                    </div>
                 </div>
-            </header>
+            </nav>
         );
     }
 });

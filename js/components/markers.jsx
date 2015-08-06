@@ -25,6 +25,7 @@ var MarkerCollection = React.createClass({
     },
 
     handleFilter: function (evt) {
+        // #TODO: fix dupicated data
         var filter = evt.target.dataset.filter,
             data = this.state.crimes;
         
@@ -33,9 +34,9 @@ var MarkerCollection = React.createClass({
                 var a = a[filter],
                     b = b[filter];
                 
-                if (a > b) {
+                if (a < b) {
                     return -1;
-                }else if (a < b) {
+                } else if (a > b) {
                     return 1;
                 } else {
                     return 0;
@@ -44,7 +45,9 @@ var MarkerCollection = React.createClass({
         };
 
         filter = compare(filter); //set filter
-
+        /*  NEVER mutate this.state directly, as calling setState() 
+            afterwards may replace the mutation you made. 
+            Treat this.state as if it were immutable. */
         this.setState({crimes: data.sort(filter)}); // sort and update
     },
 
@@ -53,11 +56,15 @@ var MarkerCollection = React.createClass({
             markers = this.state.crimes || [];
 
         return (
-            <div className="col-sm-4 col-sm-pull-8 panel panel-default">
-                <div className="row">
-                        <a className="col-sm-6" onClick={self.handleFilter} data-filter="event_clearance_group" >Filter on Group</a>
-                        <a className="col-sm-6" onClick={self.handleFilter} data-filter="event_clearance_code" >Filter code</a>
-                </div>
+            <div className="col-sm-4 col-sm-pull-8">
+                <nav className="navbar navbar-default">
+                    <div className="container-fluid">
+                        <ul className="nav navbar-nav">
+                            <li><a className="" onClick={self.handleFilter} data-filter="event_clearance_group" >Filter on Group</a></li>
+                            <li><a className="" onClick={self.handleFilter} data-filter="event_clearance_code" >Filter code</a></li>
+                        </ul>
+                    </div>
+                </nav>
                 <section id="crimes-listings">
                     <ul className="list-group">
                         {markers.map(function(markers){

@@ -1,6 +1,8 @@
 // Bootstrap
 $('.dropdown-toggle').dropdown();
-"use strict";
+
+"use strict"; //ecmaSCRIPT
+
 function getIconType (context) {
     var context = context.replace(/\W/g, "").toLowerCase(),
         icons = {
@@ -121,6 +123,7 @@ function getIconType (context) {
 function makeMarker (context) {
     var icon = getIconType(context.event_clearance_group);
     L.mapbox.featureLayer({
+        cad_cdw_id: context.cad_cdw_id,
         type: 'Feature',
         geometry: {
             type: 'Point',
@@ -160,7 +163,6 @@ var App = React.createClass({
             <div>
                 <Navigation />
                 <article id="app" className="container">
-                    <SearchInput />
                     <div className="row">
                         <MapBox />
                         <MarkerCollection source="https://data.seattle.gov/resource/3k2p-39jp.json?$limit=50&$where=within_circle(incident_location, 47.594972, -122.331518, 1609.34)" />

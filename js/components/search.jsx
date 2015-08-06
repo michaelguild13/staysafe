@@ -22,12 +22,11 @@ var SearchInput = React.createClass({
 
     render: function() {
         return (
-            <div className="jumbotron">
-                <h1>StaySafe @</h1><p className="sr-only">Where we try our best to show you want not to do when visiting CenturyLink</p>
+            <form className="navbar-form navbar-left" role="search">
                 <div className="form-group">
-                    <input className="form-control" value={this.state.value} onChange={this.handleChange} />
+                    <input className="form-control" value={this.state.value} onChange={this.handleChange} placeholder="insert address"/>
                 </div>
-            </div>
+            </form>
         );
     }
 });
