@@ -14,7 +14,7 @@ var MarkerCollection = React.createClass({
         }.bind(this));
     },
 
-    handleClick: function(evt) {
+    handleMarker: function(evt) {
         var lat = evt.target.dataset.lat,
             lng = evt.target.dataset.lng;
 
@@ -70,7 +70,7 @@ var MarkerCollection = React.createClass({
                         {markers.map(function(markers){
                             makeMarker(markers);
                             return  <li className="list-group-item" key={markers.cad_event_number}>
-                                        <a className="small" onClick={self.handleClick} data-lng={markers.longitude} data-lat={markers.latitude}>
+                                        <a className="small" onClick={self.handleMarker} data-lng={markers.longitude} data-lat={markers.latitude}>
                                             {markers.event_clearance_group}
                                         </a>
                                         <span className="badge">{markers.event_clearance_code}</span>

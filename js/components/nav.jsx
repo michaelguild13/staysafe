@@ -2,7 +2,14 @@ var Navigation = React.createClass({
     componentDidMount: function () {
     },
 
+    handleFilter: function (evt) {
+        var filter = evt.target.dataset.filter;
+        console.log(filter);
+    },
+
     render: function () {
+        var self = this;
+
         return (
             <nav className="navbar navbar-default" id="top" role="banner">
                 <div className="container-fluid">
@@ -17,10 +24,10 @@ var Navigation = React.createClass({
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li><a>Don't Park Here</a></li>
-                            <li><a>Don't Walk Here</a></li>
-                            <li><a>Don't Shop Here</a></li>
-                            <li><a>Don't Buy a Home Here</a></li>
+                            <li><a onClick={self.handleFilter} data-filter="car" >Don't Park Here</a></li>
+                            <li><a onClick={self.handleFilter} data-filter="assult" >Don't Walk Here</a></li>
+                            <li><a onClick={self.handleFilter} data-filter="rob" >Don't Shop Here</a></li>
+                            <li><a onClick={self.handleFilter} data-filter="stolen" >Don't Buy a Home Here</a></li>
                         </ul>
                         <SearchInput />
                     </div>
