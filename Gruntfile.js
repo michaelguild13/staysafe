@@ -56,8 +56,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: '**/*.js',
-        tasks: ['concat', 'uglify'],
+        files: ['js/**/*.jsx'],
+        tasks: [ 'concat', 'babel', 'uglify'],
         options: {
           spawn: false,
         },
@@ -71,5 +71,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-babel');
 
-  grunt.registerTask('default', [ 'concat', 'babel'/*, 'uglify'*/]);
+  grunt.registerTask('default', [ 'concat', 'babel', 'uglify']);
 };
