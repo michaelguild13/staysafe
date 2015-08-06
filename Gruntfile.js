@@ -31,7 +31,8 @@ module.exports = function(grunt) {
 
     babel: {
       options: {
-          nonStandard: true
+          sourceMap: true,
+          nonStandard: true //allow jsx
       },
       app: {
         src: 'dist/app.js',
